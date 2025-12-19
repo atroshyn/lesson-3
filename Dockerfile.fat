@@ -1,0 +1,14 @@
+FROM python:3.9
+
+RUN apt-get update && apt-get install -y \
+    libglib2.0-0 libsm6 libxrender1 libxext6 \
+    && apt-get update
+
+COPY model.pt .
+COPY inference.py .
+COPY export_model.py .  
+COPY example.jpg .
+
+RUN pip install torch torchvision pillow
+
+ENTRYPOINT ["python", "inference.py"]

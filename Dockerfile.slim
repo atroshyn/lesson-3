@@ -1,0 +1,17 @@
+FROM python:3.9-slim AS builder
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libglib2.0-0 libsm6 libxrender1 libxext6 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir --target=/deps torch torchvision pillow
+
+FROM python:3.9-slim
+
+COPY --from=builder /deps /usr/local/lib/python3.9/site-packages
+
+COPY model.pt .
+COPY inference.py .
+COPY example.jpg .
+
+ENTRYPOINT ["python", "inference.py"]
