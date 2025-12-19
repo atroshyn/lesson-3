@@ -1,15 +1,8 @@
-## Перевірка працездатності коду
-### ml-fat
-![ml-fat](./screen_fat.png)
-
-### ml-slim
-![ml-slim](./screen_slim.png)
-
 ## Порівняння Docker-образів
 
 ### Розміри образів
- - ml-fat:     2.73GB
- - ml-slim:    1.04GB
+ - ml-fat:     ~2.5GB
+ - ml-slim:    ~1GB
 
 ### Кількість шарів
  - ml-fat:        20
@@ -23,6 +16,4 @@
 - Використати distroless-базовий образ для мінімального runtime та безпеки.
 - Перейти на CPU-only збірку PyTorch, яка значно менша за розміром.
 - Використати легші моделі (MobileNetV3-Small, SqueezeNet), щоб зменшити розмір model.pt.
-- Використати TorchScript Lite або оптимізовану форму моделі.
-
-
+- Використати TorchScript Lite або оптимізовану форму моделі
